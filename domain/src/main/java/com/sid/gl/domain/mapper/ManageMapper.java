@@ -13,18 +13,18 @@ import java.util.stream.Collectors;
 
 public interface ManageMapper {
    static Employee mapEmployeeDtoToEmployee(EmployeeRequestDto employeeDto){
-      Employee employee = new Employee();
-      employee.setFirstName(employeeDto.getFirstName());
-      employee.setLastName(employeeDto.getLastName());
-      employee.setEmail(employeeDto.getEmail());
-      employee.setDepartment(employeeDto.getDepartment());
+      Employee employee = Employee.Builder.builder()
+                              .firstName(employeeDto.getFirstName())
+                              .lastName(employeeDto.getLastName())
+                              .email(employeeDto.getEmail())
+                              .build();
       return employee;
   }
 
   static EmployeeResponse mapToEmployeeRespons(Employee employee){
        EmployeeResponse employeeResponse = new EmployeeResponse();
        employeeResponse.setId(employee.getId());
-       employeeResponse.setDepartment(employee.getDepartment());
+       employeeResponse.setDepartment(employee.getDepartment().getName());
        String fullName = employee.getFirstName() + " "+ employee.getLastName();
        employeeResponse.setFullName(fullName);
        employeeResponse.setEmail(employee.getEmail());
@@ -32,9 +32,9 @@ public interface ManageMapper {
   }
 
   static Department mapToDepartment(DepartmentRequestDto dto){
-       Department department = new Department();
-       department.setName(dto.getName());
-       department.setDescription(dto.getDescription());
+       Department department = Department.Builder.builder().name(dto.getName())
+               .description(dto.getDescription())
+               .build();
        return department;
   }
 
@@ -50,6 +50,13 @@ public interface ManageMapper {
        return list.stream()
                .filter(Objects::nonNull)
                .map(ManageMapper::mapToDepartmentResponse)
+               .collect(Collectors.toList());
+  }
+
+  static List<EmployeeResponse> mapListEmployeeResponse(List<Employee> list){
+       return list.stream()
+               .filter(Objects::nonNull)
+               .map(ManageMapper::mapToEmployeeRespons)
                .collect(Collectors.toList());
   }
 }
