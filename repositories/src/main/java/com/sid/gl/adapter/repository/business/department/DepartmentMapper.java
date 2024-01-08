@@ -8,22 +8,22 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 public class DepartmentMapper {
-    static DepartmentEntity mapToDepartmentEntity(Department department){
+    public static DepartmentEntity mapToDepartmentEntity(Department department){
         DepartmentEntity entity = new DepartmentEntity();
         entity.setDescription(department.getDescription());
         entity.setName(department.getName());
         return entity;
     }
 
-    static Department mapToDepartment(DepartmentEntity entity){
-        Department department = new Department();
-        department.setDescription(entity.getDescription());
-        department.setName(entity.getName());
-        department.setId(entity.getId());
-        return department;
+    public static Department mapToDepartment(DepartmentEntity entity){
+        return  Department.Builder.builder()
+                                .name(entity.getName())
+                                .description(entity.getDescription())
+                                .id(entity.getId())
+                                 .build();
     }
 
-    static List<Department> mapListDepartmentEntityToListDepartment(List<DepartmentEntity> list){
+   public  static List<Department> mapListDepartmentEntityToListDepartment(List<DepartmentEntity> list){
         return list.stream()
                 .filter(Objects::nonNull)
                 .map(DepartmentMapper::mapToDepartment)
