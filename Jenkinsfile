@@ -31,6 +31,12 @@ pipeline {
 		}
 	}
 
+	stage('Deploy jar to nexus repo') {
+        steps {
+            bat "mvn jar:jar deploy:deploy"
+        }
+    }
+
 	stage('Docker and push'){
 	    steps{
 	        bat 'mvn clean compile jib:build'
