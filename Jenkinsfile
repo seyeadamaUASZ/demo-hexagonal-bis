@@ -30,5 +30,11 @@ pipeline {
            }
 		}
 	}
+
+	stage('Docker and push'){
+	    steps{
+	        bat 'mvn clean compile jib:build'
+	    }
+	}
 	}
 }
