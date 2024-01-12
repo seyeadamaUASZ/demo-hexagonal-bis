@@ -1,6 +1,7 @@
 package com.sid.gl.adapter.api;
 
 import com.sid.gl.adapter.api.constants.ApiPath;
+import com.sid.gl.adapter.api.contracts.AppController;
 import com.sid.gl.common.dto.EmployeeRequestDto;
 import com.sid.gl.common.dto.EmployeeResponse;
 import com.sid.gl.common.response.ApiResponse;
@@ -10,10 +11,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = ApiPath.API+"employee")
-public class EmployeeController {
+public class EmployeeController implements AppController<EmployeeRequestDto> {
     private final EmployeeUseCasePort employeeUseCasePort;
 
     public EmployeeController(EmployeeUseCasePort employeeUseCasePort) {
@@ -41,4 +43,17 @@ public class EmployeeController {
                 .build();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+    @GetMapping("/by-department")
+    public ResponseEntity<ApiResponse> getEmployeeByDep(){
+        Map<String,List<EmployeeResponse>> employees = employeeUseCasePort.getEmployeeByDepartment();
+        ApiResponse<Map<String,List<EmployeeResponse>>> response =ApiResponse
+                .<Map<String,List<EmployeeResponse>>>builder()
+                .status(ApiPath.SUCCESS)
+                .results(employees)
+                .build();
+        return new ResponseEntity<>(response,HttpStatus.OK);
+    }
+
+
 }
