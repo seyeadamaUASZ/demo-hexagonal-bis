@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = ApiPath.API+"department")
+@RequestMapping(value = ApiPath.API+ApiPath.DEPARTMENT)
 public class DepartmentController implements AppController<DepartmentRequestDto> {
     private final DepartmentUseCasePort departmentUseCasePort;
 

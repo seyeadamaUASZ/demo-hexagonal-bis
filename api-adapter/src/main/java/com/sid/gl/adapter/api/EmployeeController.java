@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = ApiPath.API+"employee")
+@RequestMapping(value = ApiPath.API+ApiPath.EMPLOYEE)
 public class EmployeeController implements AppController<EmployeeRequestDto> {
     private final EmployeeUseCasePort employeeUseCasePort;
 
@@ -44,7 +44,7 @@ public class EmployeeController implements AppController<EmployeeRequestDto> {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
-    @GetMapping("/by-department")
+    @GetMapping("/"+ApiPath.EMPLOYEE_BY_DEP)
     public ResponseEntity<ApiResponse> getEmployeeByDep(){
         Map<String,List<EmployeeResponse>> employees = employeeUseCasePort.getEmployeeByDepartment();
         ApiResponse<Map<String,List<EmployeeResponse>>> response =ApiResponse
