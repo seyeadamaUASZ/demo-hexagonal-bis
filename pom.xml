@@ -13,7 +13,17 @@
 	<version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>demo-hexagonal-bis</name>
-	<description>Demo project for Spring Boot</description>
+	<description>hexagonal project for Spring Boot</description>
+
+	<distributionManagement>
+		<repository>
+			<uniqueVersion>false</uniqueVersion>
+			<id>nexus-release</id>
+			<name>nexus-release</name>
+			<url>http://localhost:8081/repository/nexus-release/</url>
+		</repository>
+	</distributionManagement>
+
     <modules>
         <module>common</module>
 		<module>domain</module>
