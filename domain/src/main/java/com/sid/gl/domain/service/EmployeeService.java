@@ -13,7 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
+
 
 @Service
 @Slf4j
@@ -31,8 +34,8 @@ public class EmployeeService implements EmployeeUseCasePort {
         log.info("Save Employee .... {} ",employeeRequestDto);
         Employee employee = ManageMapper.mapEmployeeDtoToEmployee(employeeRequestDto);
         Department department = departmentRepositoryPort.getDepartment(employeeRequestDto.getDepartmentId());
-        /*if(Objects.isNull(department))
-             throw new ResourceNotFoundException("Invalid saved employee because Department not found !!!");*/
+        if(Objects.isNull(department))
+             throw new ResourceNotFoundException("Invalid saved employee because Department not found !!!");
         employee.setDepartment(department);
         return ManageMapper.mapToEmployeeRespons(employeeRepositoryPort.saveEmployee(employee));
     }
@@ -42,4 +45,18 @@ public class EmployeeService implements EmployeeUseCasePort {
         log.info("Retrieve list employee ....");
         return ManageMapper.mapListEmployeeResponse(employeeRepositoryPort.findAll());
     }
+
+    @Override
+    public Map<String, List<EmployeeResponse>> getEmployeeByDepartment() {
+        log.info("list employees by dep...");
+        return
+                employeeRepositoryPort.findAll()
+                        .stream()
+                        .filter(Objects::nonNull)
+                        .map(ManageMapper::mapToEmployeeRespons)
+                        .collect(Collectors.groupingBy(EmployeeResponse::getDepartment));
+
+    }
+
+
 }

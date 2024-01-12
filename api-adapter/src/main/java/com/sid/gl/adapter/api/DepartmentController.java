@@ -1,6 +1,7 @@
 package com.sid.gl.adapter.api;
 
 import com.sid.gl.adapter.api.constants.ApiPath;
+import com.sid.gl.adapter.api.contracts.AppController;
 import com.sid.gl.common.dto.DepartmentRequestDto;
 import com.sid.gl.common.dto.DepartmentResponse;
 import com.sid.gl.common.response.ApiResponse;
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = ApiPath.API+"department")
-public class DepartmentController {
+@RequestMapping(value = ApiPath.API+ApiPath.DEPARTMENT)
+public class DepartmentController implements AppController<DepartmentRequestDto> {
     private final DepartmentUseCasePort departmentUseCasePort;
 
     public DepartmentController(DepartmentUseCasePort departmentUseCasePort) {
