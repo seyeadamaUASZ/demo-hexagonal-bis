@@ -9,6 +9,6 @@ public class EmployeeResponse {
     private Long id;
     private String fullName;
     private String email;
-    private String Department;
+    private String department;
 
 }
