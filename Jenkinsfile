@@ -42,5 +42,14 @@ pipeline {
 	        bat 'mvn clean compile jib:build'
 	    }
 	}
+
+	stage('deploy app to kubernetes cluster'){
+           steps {
+              bat "cd k8s"
+             script {
+                kubernetesDeploy(configs: "postgres-deployment.yml","start-domain.yml")
+             }
+           }
+        }
 	}
 }
