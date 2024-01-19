@@ -31,11 +31,11 @@ pipeline {
 		}
 	}
 
-	stage('Deploy jar to nexus repo') {
-        steps {
-            bat "mvn jar:jar deploy:deploy"
-        }
-    }
+	//stage('Deploy jar to nexus repo') {
+       // steps {
+           // bat "mvn jar:jar deploy:deploy"
+        //}
+    //}
 
 	stage('Docker and push'){
 	    steps{
