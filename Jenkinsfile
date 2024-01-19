@@ -23,13 +23,13 @@ pipeline {
 			}
 		}
 
-		stage('sonar quality'){
-		steps {
-		   withSonarQubeEnv(installationName:'sonarqube'){
-                   bat 'mvn clean install -DskipTests org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar -Dsonar.java.binaries=target/classes'
-           }
-		}
-	}
+	// 	stage('sonar quality'){
+	// 	steps {
+	// 	   withSonarQubeEnv(installationName:'sonarqube'){
+    //                bat 'mvn clean install -DskipTests org.sonarsource.scanner.maven:sonar-maven-plugin:3.9.0.2155:sonar -Dsonar.java.binaries=target/classes'
+    //        }
+	// 	}
+	// }
 
 	//stage('Deploy jar to nexus repo') {
        // steps {
@@ -37,11 +37,11 @@ pipeline {
         //}
     //}
 
-	stage('Docker and push'){
-	    steps{
-	        bat 'mvn clean compile jib:build'
-	    }
-	}
+	// stage('Docker and push'){
+	//     steps{
+	//         bat 'mvn clean compile jib:build'
+	//     }
+	// }
 
 	stage('deploy app to kubernetes cluster'){
            steps {
