@@ -37,6 +37,44 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>com.sid.gl.HexagonalBisApplication</mainClass>
+                </configuration>
+            </plugin>
 
+            <plugin>
+                <groupId>com.google.cloud.tools</groupId>
+                <artifactId>jib-maven-plugin</artifactId>
+                <version>3.2.1</version>
+                <configuration>
+                    <from>
+                        <image>eclipse-temurin:17</image>
+                    </from>
+                    <to>
+                        <image>docker.io/adama93/${project.artifactId}</image>
+                    </to>
+                    <!--<container>
+                        <mainClass>com.sid.gl.HexagonalBisApplication</mainClass>
+                        <ports>
+                            <port>9090</port>
+                        </ports>
+                    </container>-->
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>dockerBuild</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

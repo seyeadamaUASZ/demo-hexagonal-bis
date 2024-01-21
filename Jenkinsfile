@@ -37,20 +37,19 @@ pipeline {
         //}
     //}
 
-	// stage('Docker and push'){
-	//     steps{
-	//         bat 'mvn clean compile jib:build'
-	//     }
-	// }
+	 stage('Docker and push'){
+	     steps{
+	         bat 'mvn clean compile jib:build'
+	     }
+	 }
 
-	stage('deploy app to kubernetes cluster'){
-           steps {
-              bat 'cd k8s'
-             //script {
-                //kubernetesDeploy(configs: "postgres-deployment.yml","start-domain.yml")
-             //}
-             bat 'kubectl apply -f .'
-           }
-        }
+	// stage('deploy app to kubernetes cluster'){
+    //        steps {
+    //          //script {
+    //             //kubernetesDeploy(configs: "postgres-deployment.yml","start-domain.yml")
+    //          //}
+    //          bat 'cd k8s && kubectl apply -f .'
+    //        }
+    //     }
 	}
 }
