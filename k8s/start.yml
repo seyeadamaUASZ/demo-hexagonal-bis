@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: start-deployment
+  name: start
 spec:
   selector:
     matchLabels:
@@ -10,21 +10,32 @@ spec:
   template:
     metadata:
       labels:
-        app: start-domain
+        app: start
     spec:
       containers:
-        - name: start-domain
+        - name: start
           image: adama93/start
           imagePullPolicy: Always
           ports:
             - containerPort: 9090
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 9090
+            initialDelaySeconds: 5
+          livenessProbe:
+              httpGet:
+                path: /actuator/health
+                port: 9090
+              initialDelaySeconds: 5
+          restartPolicy: Always
           env:   # Setting Enviornmental Variables
             - name: DB_HOST   # Setting Database host address from configMap
-              value: postgresql
+              value: postgres
             - name: DB_NAME  # Setting Database name from configMap
               value: employee_db
             - name: DB_USERNAME  # Setting Database username from Secret
-              value: postgres
+              value: admin
             - name: DB_PASSWORD # Setting Database password from Secret
               value: passer123
 ---
