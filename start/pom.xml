@@ -18,24 +18,67 @@
     </properties>
 
     <dependencies>
+        <!--<dependency>
+            <groupId>com.sid.gl</groupId>
+            <artifactId>domain</artifactId>
+            <version>0.0.1-20240723.134558-3</version>
+        </dependency>-->
+
         <dependency>
+            <groupId>com.sid.gl</groupId>
+            <artifactId>domain</artifactId>
+            <version>0.0.1-20240723.203550-4</version>
+        </dependency>
+
+       <!-- <dependency>
             <groupId>com.sid.gl</groupId>
             <artifactId>domain</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
-        <dependency>
+-->
+       <!-- <dependency>
             <groupId>com.sid.gl</groupId>
-            <artifactId>repositories-adapter</artifactId>
+            <artifactId>api-adapter</artifactId>
+            <version>0.0.1-20240723.122125-1</version>
+        </dependency>-->
+        <!--<dependency>
+            <groupId>com.sid.gl</groupId>
+            <artifactId>api-adapter</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
 
         <dependency>
             <groupId>com.sid.gl</groupId>
             <artifactId>api-adapter</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1-20240723.204336-2</version>
         </dependency>
+
+       <!-- <dependency>
+            <groupId>com.sid.gl</groupId>
+            <artifactId>repositories-adapter</artifactId>
+            <version>0.0.1-20240723.121754-1</version>
+        </dependency>-->
+
+        <dependency>
+            <groupId>com.sid.gl</groupId>
+            <artifactId>repositories-adapter</artifactId>
+            <version>0.0.1-20240723.204039-2</version>
+        </dependency>
+
+       <!-- <dependency>
+            <groupId>com.sid.gl</groupId>
+            <artifactId>repositories-adapter</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>-->
+
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <url>http://localhost:8081/repository/snapshot-repo/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

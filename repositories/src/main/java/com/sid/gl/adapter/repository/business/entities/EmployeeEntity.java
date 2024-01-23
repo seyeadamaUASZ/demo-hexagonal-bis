@@ -3,6 +3,7 @@ package com.sid.gl.adapter.repository.business.entities;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 @Entity
 @Table(name = "tb_employee")

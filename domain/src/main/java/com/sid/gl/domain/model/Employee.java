@@ -57,8 +57,7 @@ public class Employee {
     }
 
     private static boolean patternMatches(String emailAddress) {
-        String  regexPattern = "^(?=.{1,64}@)[A-Za-z0-9_-]+(\\\\.[A-Za-z0-9_-]+)*@\" \n" +
-                "[^-][A-Za-z0-9-]+(\\\\.[A-Za-z0-9-]+)*(\\\\.[A-Za-z]{2,})$";
+      String regexPattern = "^(.+)@(\\S+)$";
         return Pattern.compile(regexPattern)
                 .matcher(emailAddress)
                 .matches();
@@ -100,6 +99,7 @@ public class Employee {
         lastName= builder.lastName;
         firstName= builder.firstName;
         email= builder.email;
+        department = builder.department;
     }
 
     public static final class Builder{

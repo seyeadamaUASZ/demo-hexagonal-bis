@@ -2,6 +2,9 @@ package com.sid.gl.adapter.api.advice;
 
 import com.sid.gl.common.dto.ErrorDTO;
 import com.sid.gl.common.exceptions.BadArgumentsException;
+import com.sid.gl.common.exceptions.DomainException;
+import com.sid.gl.common.exceptions.ResourceNotFoundException;
+import com.sid.gl.common.exceptions.ValidationException;
 import com.sid.gl.common.response.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -35,6 +38,33 @@ public class ManageAdviceHandler {
     @ExceptionHandler(BadArgumentsException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ApiResponse<?> handleServiceBussnessValidatorException(BadArgumentsException exception){
+        ApiResponse<?> response = new ApiResponse<>();
+        response.setErrorDTOS(Collections.singletonList(new ErrorDTO("", exception.getMessage())));
+        response.setStatus("FAILED");
+        return response;
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse<?> handleServiceBussnessValidatorException(ResourceNotFoundException exception){
+        ApiResponse<?> response = new ApiResponse<>();
+        response.setErrorDTOS(Collections.singletonList(new ErrorDTO("", exception.getMessage())));
+        response.setStatus("FAILED");
+        return response;
+    }
+
+    @ExceptionHandler(ValidationException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse<?> handleServiceBussnessValidatorException(ValidationException exception){
+        ApiResponse<?> response = new ApiResponse<>();
+        response.setErrorDTOS(Collections.singletonList(new ErrorDTO("", exception.getMessage())));
+        response.setStatus("FAILED");
+        return response;
+    }
+
+    @ExceptionHandler(DomainException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ApiResponse<?> handleServiceBussnessValidatorException(DomainException exception){
         ApiResponse<?> response = new ApiResponse<>();
         response.setErrorDTOS(Collections.singletonList(new ErrorDTO("", exception.getMessage())));
         response.setStatus("FAILED");

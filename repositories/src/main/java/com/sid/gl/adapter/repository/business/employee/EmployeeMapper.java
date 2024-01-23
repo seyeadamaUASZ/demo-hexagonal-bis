@@ -2,6 +2,7 @@ package com.sid.gl.adapter.repository.business.employee;
 
 import com.sid.gl.adapter.repository.business.department.DepartmentMapper;
 import com.sid.gl.adapter.repository.business.entities.EmployeeEntity;
+import com.sid.gl.domain.model.Department;
 import com.sid.gl.domain.model.Employee;
 import java.util.List;
 import java.util.Objects;
@@ -13,7 +14,6 @@ public class EmployeeMapper {
         employeeEntity.setFirstName(employee.getFirstName());
         employeeEntity.setEmail(employee.getEmail());
         employeeEntity.setLastName(employee.getLastName());
-        employeeEntity.setDepartment(DepartmentMapper.mapToDepartmentEntity(employee.getDepartment()));
         return employeeEntity;
     }
 

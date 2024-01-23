@@ -1,8 +1,5 @@
 package com.sid.gl.common.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-
 
 public class EmployeeRequestDto {
     private Long id;
@@ -49,5 +46,16 @@ public class EmployeeRequestDto {
 
     public void setDepartmentId(Long departmentId) {
         this.departmentId = departmentId;
+    }
+
+    @Override
+    public String toString() {
+        return "EmployeeRequestDto{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", email='" + email + '\'' +
+                ", departmentId=" + departmentId +
+                '}';
     }
 }

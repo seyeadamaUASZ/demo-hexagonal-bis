@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_department")
 @Getter
@@ -16,4 +18,6 @@ public class DepartmentEntity {
     private String name;
     @Column(name = "description")
     private String description;
+   /* @OneToMany(mappedBy = "department", fetch = FetchType.LAZY, cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<EmployeeEntity> employees;*/
 }

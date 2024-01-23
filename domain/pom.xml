@@ -22,9 +22,17 @@
         <dependency>
             <groupId>com.sid.gl</groupId>
             <artifactId>common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1-20240723.203324-2</version>
         </dependency>
+
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>nexus</id>
+            <url>http://localhost:8081/repository/snapshot-repo/</url>
+        </repository>
+    </repositories>
 
     <build>
         <plugins>

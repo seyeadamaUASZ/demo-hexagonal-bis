@@ -33,7 +33,7 @@ spec:
             - name: DB_HOST   # Setting Database host address from configMap
               value: postgres
             - name: DB_NAME  # Setting Database name from configMap
-              value: employee_db
+              value: emloyee_db
             - name: DB_USERNAME  # Setting Database username from Secret
               value: admin
             - name: DB_PASSWORD # Setting Database password from Secret
@@ -46,7 +46,7 @@ metadata: # Metadata of the resource kind we are creating
   name: start-svc
 spec:
   selector:
-    app: bookstore
+    app: start
   ports:
     - protocol: "TCP"
       port: 9090 # The port that the service is running on in the cluster

@@ -18,7 +18,6 @@ public class DepartmentServiceRepository implements DepartmentRepositoryPort {
 
     @Override
     public Department saveDepartment(Department department) {
-        //for validation
         department.validate();
         return DepartmentMapper.mapToDepartment(departmentRepository.save(DepartmentMapper.mapToDepartmentEntity(department)));
     }

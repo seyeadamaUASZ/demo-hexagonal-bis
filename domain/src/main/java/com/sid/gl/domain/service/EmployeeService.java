@@ -31,11 +31,9 @@ public class EmployeeService implements EmployeeUseCasePort {
 
     @Override
     public EmployeeResponse saveEmployee(EmployeeRequestDto employeeRequestDto) {
-        log.info("Save Employee .... {} ",employeeRequestDto);
+        log.info("Save Employee .... {} ",employeeRequestDto.getFirstName());
         Employee employee = ManageMapper.mapEmployeeDtoToEmployee(employeeRequestDto);
         Department department = departmentRepositoryPort.getDepartment(employeeRequestDto.getDepartmentId());
-        if(Objects.isNull(department))
-             throw new ResourceNotFoundException("Invalid saved employee because Department not found !!!");
         employee.setDepartment(department);
         return ManageMapper.mapToEmployeeRespons(employeeRepositoryPort.saveEmployee(employee));
     }
